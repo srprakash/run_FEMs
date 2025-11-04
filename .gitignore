@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# IDEs
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Data and outputs
+data/
+data_export/
+output/
+results/
+detection_list.txt
+
+# Models
+*.pt
+models/
+
+# Markdown docs (keeping only README.md)
+cursor_retrieve_original_prompt_for_vid.md
