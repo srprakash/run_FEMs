@@ -7,7 +7,7 @@ import cv2
 import numpy as np
 from typing import List, Dict, Tuple
 from pathlib import Path
-from config import MAX_OBJECTS_PER_FRAME, CONFIDENCE_THRESHOLD
+from config import MAX_OBJECTS_PER_FRAME, CONFIDENCE_THRESHOLD, NMS_IOU_THRESHOLD
 
 # Platform detection
 try:
@@ -53,6 +53,7 @@ class ObjectDetector:
         """
         self.max_objects = MAX_OBJECTS_PER_FRAME
         self.confidence_threshold = CONFIDENCE_THRESHOLD
+        self.nms_iou_threshold = NMS_IOU_THRESHOLD
         self.verbose = verbose
         self.use_onnx = False
         self.model = None
@@ -450,7 +451,12 @@ class ObjectDetector:
         else:
             # Use YOLO (ultralytics) backend
             # Suppress YOLO output unless verbose is enabled
-            results = self.model(frame, conf=self.confidence_threshold, verbose=self.verbose)
+            results = self.model(
+                frame, 
+                conf=self.confidence_threshold,
+                iou=self.nms_iou_threshold,  # NMS IoU threshold for deduplication
+                verbose=self.verbose
+            )
             
             detections = []
             
