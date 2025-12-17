@@ -14,6 +14,7 @@ PERSON_REID_MODEL_PATH = "person_reid_model.pth"  # Custom person re-identificat
 MAX_OBJECTS_PER_FRAME = 15
 MAX_PERSONS_PER_FRAME = 3
 CONFIDENCE_THRESHOLD = 0.5
+NMS_IOU_THRESHOLD = 0.3  # IoU threshold for YOLO NMS (lower = more aggressive deduplication)
 POSE_CONFIDENCE_THRESHOLD = 0.7
 
 # Performance optimization settings
